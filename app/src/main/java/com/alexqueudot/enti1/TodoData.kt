@@ -5,9 +5,9 @@ package com.alexqueudot.enti1
  */
 
 object TodoData {
-    val todoList: MutableList<String> = mutableListOf(
-        "Lavar la ropa",
-        "Hacer la compra",
-        "Fregar platoss",
+    val todoList: MutableList<TodoModel> = mutableListOf(
+        TodoModel(id = 10, text = "Lavar la ropa", isCompleted = false),
+        TodoModel(id = 11, text = "Hacer la compra", isCompleted = true),
+        TodoModel(id = 12, text = "Fregar platos", isCompleted = false),
     )
 }

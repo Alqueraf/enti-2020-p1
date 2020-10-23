@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ENTI1</string>
+    <string name="title_activity_add_todo">AddTodoActivity</string>
 </resources>

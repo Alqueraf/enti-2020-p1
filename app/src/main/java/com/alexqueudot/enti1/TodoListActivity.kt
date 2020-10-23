@@ -13,6 +13,17 @@ class TodoListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_todo_list)
         // Init Recyclerview
         initRecyclerView()
+        // Init Add Todo
+        initAddTodo()
+    }
+
+    private fun initAddTodo() {
+        // 1: Click Add Button
+        fabAddTodoButton.setOnClickListener {
+            // 2: Open AddTodoActivity
+            val intent = Intent(this, AddTodoActivity::class.java)
+            startActivityForResult(intent, 101)
+        }
     }
 
     private fun initRecyclerView() {
@@ -24,7 +35,8 @@ class TodoListActivity : AppCompatActivity() {
 
     // 3: Get Result
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(requestCode == 100 && resultCode == Activity.RESULT_OK) {
+        if((requestCode == 100 || requestCode == 101) && resultCode == Activity.RESULT_OK) {
+            // Update TodoAdapter
             recyclerView.adapter?.notifyDataSetChanged()
         } else {
             super.onActivityResult(requestCode, resultCode, data)

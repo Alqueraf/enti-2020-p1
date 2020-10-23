@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_todo.view.*
  * Created by alex on 16/10/2020.
  */
 
-class TodoAdapter(var todoItems: List<String>, private val activity: Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TodoAdapter(var todoItems: List<TodoModel>, private val activity: Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // Max notes: 100
     override fun getItemCount(): Int {
@@ -29,12 +29,14 @@ class TodoAdapter(var todoItems: List<String>, private val activity: Activity) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = todoItems[position]
         // Set Text
-        holder.itemView.noteTextView.text = item
+        holder.itemView.noteTextView.text = item.text
+        // Set Completed
+        holder.itemView.completedCheckBox.isChecked = item.isCompleted
         // Set Click Listener
         holder.itemView.noteCardView.setOnClickListener { view ->
             // Open Note1 Detail
             val intent = Intent(view.context, TodoDetailActivity::class.java)
-            intent.putExtra("position", position)
+            intent.putExtra("id", item.id)
             // 1: Open for Result
             activity.startActivityForResult(intent, 100)
         }
