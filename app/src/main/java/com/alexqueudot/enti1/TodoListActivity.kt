@@ -15,6 +15,8 @@ class TodoListActivity : AppCompatActivity() {
         initRecyclerView()
         // Init Add Todo
         initAddTodo()
+
+        // TEST TodoService
     }
 
     private fun initAddTodo() {

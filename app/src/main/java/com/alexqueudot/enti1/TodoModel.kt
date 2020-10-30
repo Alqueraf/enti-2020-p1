@@ -9,3 +9,8 @@ data class TodoModel(
     val text: String,
     val isCompleted: Boolean = false,
 )
+
+// Plain
+// Old
+// Kotlin
+// Object
