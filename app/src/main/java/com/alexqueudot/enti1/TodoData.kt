@@ -40,7 +40,7 @@ object TodoData {
 }
 
 
-class TodoService(private val contex    t: Context) {
+class TodoService(private val context: Context) {
 
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("localData", Context.MODE_PRIVATE)
