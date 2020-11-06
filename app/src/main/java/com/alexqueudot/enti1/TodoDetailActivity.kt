@@ -15,7 +15,8 @@ class TodoDetailActivity : AppCompatActivity() {
 
         // Get noteText from Intent
         val noteId: Int = intent.getIntExtra("id", 0)
-        val note: TodoModel? = TodoData.todoList.firstOrNull { todoModel ->
+        val noteList = TodoService(this).getTodos()
+        val note: TodoModel? = noteList.firstOrNull { todoModel ->
             todoModel.id == noteId
         }
         // Get from TodoData. Set Note Text
@@ -23,9 +24,9 @@ class TodoDetailActivity : AppCompatActivity() {
 
         saveNoteButton.setOnClickListener { view: View ->
             note?.let { note ->
-                val notePosition = TodoData.todoList.indexOf(note)
-                // 0: Set new text to TodoData
-                TodoData.todoList[notePosition] = note.copy(text = noteEditText.text.toString())
+                // 0: Set new text to TodoModel
+                val updatedNote = note.copy(text = noteEditText.text.toString())
+                TodoService(this).saveTodo(updatedNote)
                 // 1: Set new note text to ListActivity
                 setResult(Activity.RESULT_OK)
                 // 2: Close

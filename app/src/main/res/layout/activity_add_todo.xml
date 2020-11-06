@@ -17,6 +17,6 @@
         android:id="@+id/addTodoButton"
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
-        android:text="Add"
-        android:layout_height="48dp"/>
+        android:text="@string/add_button"
+        android:layout_height="@dimen/button_height"/>
 </LinearLayout>

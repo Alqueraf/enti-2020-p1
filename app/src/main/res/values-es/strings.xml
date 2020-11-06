@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_button">Añadir</string>
+    <string name="save_button">Guardar</string>
+</resources>

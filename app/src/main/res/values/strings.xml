@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ENTI1</string>
     <string name="title_activity_add_todo">AddTodoActivity</string>
+
+    <string name="add_button">Add</string>
+    <string name="save_button">Save</string>
 </resources>

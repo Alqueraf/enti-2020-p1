@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_todo_list.*
 
 class TodoListActivity : AppCompatActivity() {
+
+    private var todoAdapter: TodoAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_list)
@@ -32,12 +35,17 @@ class TodoListActivity : AppCompatActivity() {
         // 1: Layout Manager
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         // 2: Adapter
-        recyclerView.adapter = TodoAdapter(TodoData.todoList, this)
+        val todoList = TodoService(this).getTodos()
+        todoAdapter = TodoAdapter(todoList, this)
+        recyclerView.adapter = todoAdapter
     }
 
     // 3: Get Result
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if((requestCode == 100 || requestCode == 101) && resultCode == Activity.RESULT_OK) {
+            // Get new todo list
+            val todoList = TodoService(this).getTodos()
+            todoAdapter?.todoItems = todoList
             // Update TodoAdapter
             recyclerView.adapter?.notifyDataSetChanged()
         } else {

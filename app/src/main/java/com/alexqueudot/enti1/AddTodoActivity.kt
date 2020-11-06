@@ -15,13 +15,18 @@ class AddTodoActivity : AppCompatActivity() {
         addTodoButton.setOnClickListener {
             // Read note text
             val todoText = addTodoEditText.text.toString()
-            val nextId = (TodoData.todoList.lastOrNull()?.id ?: 0) + 1
+            val nextId = getNextTodoId()
             // 4: Save to TodoData list
-            TodoData.todoList.add(TodoModel(text = todoText, id = nextId))
-
+            TodoService(this).saveTodo(TodoModel(text = todoText, id = nextId))
             // Set Result
             setResult(Activity.RESULT_OK)
             finish()
         }
     }
+
+    private fun getNextTodoId(): Int {
+        val notes = TodoService(this).getTodos()
+        return (notes.lastOrNull()?.id ?: 0) + 1
+    }
+
 }
